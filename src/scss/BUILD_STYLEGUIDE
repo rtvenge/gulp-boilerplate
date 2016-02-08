@@ -1,0 +1,2 @@
+#!/bin/bash
+kss-node partials/ styleguide --template styleguide-template
