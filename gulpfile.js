@@ -10,6 +10,7 @@
     gulp = require('gulp'),
     imagemin = require('gulp-imagemin'),
     jshint = require('gulp-jshint'),
+    livereload = require('gulp-livereload'),
     sass = require('gulp-sass'),
     // svgmin = require('gulp-svgmin'),
     sourcemaps = require('gulp-sourcemaps'),
@@ -38,7 +39,7 @@
    * styles
    */
 
-  gulp.task('styles', function () {
+  gulp.task('styles', ['critical'], function () {
     return gulp.src(settings.watch.scss)
       .pipe(plumber({errorHandler: notify.onError("Error: <%= error.message %>")}))
       .pipe(sourcemaps.init())
@@ -91,13 +92,13 @@
       height: 768,
       width: 1024
     });
-});
+  });
 
   // Watch
   gulp.task('watch', ['styles', 'scripts', 'images'], function() {
 
     // Watch .scss files
-    gulp.watch('src/scss/**/*.scss', ['styles']);
+    gulp.watch('src/scss/**/*.scss', ['styles', 'critical']);
 
     // Watch .js files
     gulp.watch(settings.concat, ['scripts']);
@@ -106,10 +107,10 @@
     gulp.watch('src/img/**/*', ['images']);
 
     // Create LiveReload server
-    // livereload.listen();
+    livereload.listen();
 
     // Watch any files in , reload on change
-    // gulp.watch(['/style.css', '**/*.php']).on('change', livereload.changed);
+    gulp.watch(['/style.css']).on('change', livereload.changed);
 
   });
 

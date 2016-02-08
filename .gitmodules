@@ -1,0 +1,3 @@
+[submodule "src/scss-boilerplate"]
+	path = src/scss-boilerplate
+	url = https://github.com/hoverboard88/scss-boilerplate.git
