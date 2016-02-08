@@ -5,6 +5,7 @@
   var
     autoprefixer = require('gulp-autoprefixer'),
     cache = require('gulp-cache'),
+    critical = require('critical'),
     concat = require('gulp-concat'),
     gulp = require('gulp'),
     imagemin = require('gulp-imagemin'),
@@ -77,6 +78,20 @@
       .pipe(gulp.dest('dist/img')); // Bug in path: https://github.com/imagemin/imagemin/issues/60
       // .pipe(notify({ message: 'Images task complete' }));
   });
+
+  /*
+   * critical
+   */
+
+  gulp.task('critical', function () {
+    critical.generate({
+      src: 'index.html', // If using Wordpress, use local url: http://hoverboardstudios.dev/
+      dest: 'inc/critical.css',
+      minify: true,
+      height: 768,
+      width: 1024
+    });
+});
 
   // Watch
   gulp.task('watch', ['styles', 'scripts', 'images'], function() {
