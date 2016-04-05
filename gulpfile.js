@@ -9,7 +9,8 @@
     concat = require('gulp-concat'),
     gulp = require('gulp'),
     imagemin = require('gulp-imagemin'),
-    jshint = require('gulp-jshint'),
+    // jshint = require('gulp-jshint'),
+    eslint = require('gulp-eslint'),
     livereload = require('gulp-livereload'),
     sass = require('gulp-sass'),
     // svgmin = require('gulp-svgmin'),
@@ -22,7 +23,7 @@
   var settings = {
     browserSupport: ['> 5%', 'IE 9'],
     watch: {
-      images: ['src/img/**/*.jpg'],
+      images: ['src/img/**/*'],
       scss: 'src/scss/style.scss',
       js: ['src/js/vendor/**/*.js', 'src/js/deps/**/*.js', 'src/js/src/global.js']
     },
@@ -59,8 +60,8 @@
     return gulp.src(settings.watch.js)
       .pipe(plumber({errorHandler: notify.onError("Error: <%= error.message %>")}))
       .pipe(sourcemaps.init())
-        .pipe(jshint('.jshintrc'))
-        .pipe(jshint.reporter('default'))
+        .pipe(eslint())
+        .pipe(eslint.format()) // plumber
         .pipe(concat(settings.dist.jsFile))
         .pipe(uglify())
       .pipe(sourcemaps.write(settings.dist.srcMaps)) //Not working
