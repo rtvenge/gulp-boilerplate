@@ -9,7 +9,6 @@
     concat = require('gulp-concat'),
     gulp = require('gulp'),
     imagemin = require('gulp-imagemin'),
-    // jshint = require('gulp-jshint'),
     eslint = require('gulp-eslint'),
     livereload = require('gulp-livereload'),
     sass = require('gulp-sass'),
@@ -86,8 +85,8 @@
 
   gulp.task('critical', function () {
     critical.generate({
-      src: 'index.html', // If using Wordpress, use local url: http://hoverboardstudios.dev/
-      dest: 'inc/critical.css',
+      src: 'static/index.html', // If using Wordpress, use local url: http://hoverboardstudios.dev/
+      dest: 'dist/css/critical.css',
       minify: true,
       height: 768,
       width: 1024
