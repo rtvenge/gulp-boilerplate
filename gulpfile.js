@@ -50,7 +50,7 @@
       .pipe(sourcemaps.write(settings.dist.srcMaps))
       .pipe(gulp.dest(settings.dist.css))
       .pipe(notify({ message: 'Styles task complete' }));
-    });
+  });
 
   /*
    * scripts
@@ -58,10 +58,9 @@
 
   gulp.task('scripts', function() {
     return gulp.src(settings.watch.js)
-      .pipe(plumber({errorHandler: notify.onError("Error: <%= error.message %>")}))
       .pipe(sourcemaps.init())
         .pipe(eslint())
-        .pipe(eslint.format()) // plumber
+        .pipe(eslint.format())
         .pipe(concat(settings.dist.jsFile))
         .pipe(uglify())
       .pipe(sourcemaps.write(settings.dist.srcMaps)) //Not working
@@ -102,16 +101,16 @@
     gulp.watch('src/scss/**/*.scss', ['styles', 'critical']);
 
     // Watch .js files
-    gulp.watch(settings.concat, ['scripts']);
+    gulp.watch(settings.watch.js, ['scripts']);
 
     // Watch image files
-    gulp.watch('src/img/**/*', ['images']);
+    gulp.watch(settings.watch.images, ['images']);
 
     // Create LiveReload server
     livereload.listen();
 
     // Watch any files in , reload on change
-    gulp.watch(['/style.css']).on('change', livereload.changed);
+    gulp.watch(['dist/css/style.css']).on('change', livereload.changed);
 
   });
 
