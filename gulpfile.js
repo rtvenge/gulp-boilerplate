@@ -24,14 +24,14 @@
     watch: {
       images: ['src/img/**/*.jpg'],
       scss: 'src/scss/style.scss',
-      js: ['js/vendor/**/*.js', 'js/deps/**/*.js', 'js/src/global.js']
+      js: ['src/js/vendor/**/*.js', 'src/js/deps/**/*.js', 'src/js/src/global.js']
     },
     dist: {
       images: 'dist/img',
-      css: '', // aka root
-      jsFile: 'dist/main.min.js',
+      css: 'dist/css', // aka root
+      jsFile: 'main.min.js',
       js: 'dist/js',
-      srcMaps: './src/maps'
+      srcMaps: './maps'
     }
   };
 
