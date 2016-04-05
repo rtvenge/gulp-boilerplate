@@ -85,7 +85,8 @@
 
   gulp.task('critical', function () {
     critical.generate({
-      src: 'static/index.html', // If using Wordpress, use local url: http://hoverboardstudios.dev/
+      base: 'static/', // if using static html, use this attribute, otherwise remove.
+      src: 'index.html', // If using Wordpress (or another local server), remove 'base' attribute above and use local url: http://hoverboardstudios.dev/
       dest: 'dist/css/critical.css',
       minify: true,
       height: 768,
